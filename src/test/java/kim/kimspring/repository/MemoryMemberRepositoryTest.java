@@ -4,10 +4,12 @@ import kim.kimspring.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 class MemoryMemberRepositoryTest {
 
