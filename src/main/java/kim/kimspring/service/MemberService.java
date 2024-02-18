@@ -1,16 +1,19 @@
 package kim.kimspring.service;
 
+
 import kim.kimspring.domain.Member;
 import kim.kimspring.repository.MemberRepository;
 import kim.kimspring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //테스트 만들려면 ctrl+shift +t
-@Service //MemberService가 빈으로 구현되어 있지 않기 때문에 service로 연결
+//@Service //MemberService가 빈으로 구현되어 있지 않기 때문에 service로 연결
+@Transactional
 public class MemberService {
 
     //회원 서비스를 만드려면 repository가 있어야함

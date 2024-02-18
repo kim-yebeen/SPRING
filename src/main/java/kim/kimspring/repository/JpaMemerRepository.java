@@ -8,29 +8,39 @@ import java.util.Optional;
 
 public class JpaMemerRepository implements MemberRepository{
 
+    //jpa를 쓰려면 entitymanager를 주입받아야 한다.
     private final EntityManager em;
 
-    public JpaMemberRepository(EntityManager em){
+    public JpaMemerRepository(EntityManager em) {
         this.em = em;
     }
 
     @Override
     public Member save(Member member) {
-        return null;
+        em.persist(member);
+        return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        return Optional.empty();
+       Member member = em.find(Member.class, id);
+       return Optional.ofNullable(member);
     }
 
     @Override
     public Optional<Member> findByName(String name) {
-        return Optional.empty();
+        List<Member> result = em.createQuery("select m from Member m where m.name= :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
+
+        return result.stream().findAny();
+
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
     }
 }
